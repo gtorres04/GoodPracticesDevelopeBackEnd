@@ -18,8 +18,8 @@ public class Bibliotecario {
 
 	}
 
-	public void prestar(String isbn) {
-		if(esPalindromo(isbn)) {
+	public void prestar(Prestamo prestamo) {
+		if(esPalindromo(prestamo.getLibro().getIsbn())) {
 			throw new PrestamoException(EL_LIBRO_SE_UTILIZA_EN_BIBLIOTECA);
 		}
 		//throw new UnsupportedOperationException("Método pendiente por implementar");

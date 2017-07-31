@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import dominio.Bibliotecario;
 import dominio.Libro;
+import dominio.Prestamo;
 import dominio.excepcion.PrestamoException;
 import dominio.repositorio.RepositorioLibro;
 import dominio.repositorio.RepositorioPrestamo;
@@ -50,7 +51,8 @@ public class BibliotecarioTest {
 		Bibliotecario blibliotecario = new Bibliotecario(repositorioLibros, repositorioPrestamo);
 
 		// act
-		blibliotecario.prestar(libro.getIsbn());
+		Prestamo prestamo = new Prestamo(libro);
+		blibliotecario.prestar(prestamo);
 
 		// assert
 		Assert.assertTrue(blibliotecario.esPrestado(libro.getIsbn()));
@@ -69,10 +71,11 @@ public class BibliotecarioTest {
 		Bibliotecario blibliotecario = new Bibliotecario(repositorioLibros, repositorioPrestamo);
 
 		// act
-		blibliotecario.prestar(libro.getIsbn());
+		Prestamo prestamo = new Prestamo(libro);
+		blibliotecario.prestar(prestamo);
 		try {
 			
-			blibliotecario.prestar(libro.getIsbn());
+			blibliotecario.prestar(prestamo);
 			fail();
 			
 		} catch (PrestamoException e) {
@@ -92,8 +95,8 @@ public class BibliotecarioTest {
 		Bibliotecario blibliotecario = new Bibliotecario(repositorioLibros, repositorioPrestamo);
 
 		try {
-			
-			blibliotecario.prestar(libro.getIsbn());
+			Prestamo prestamo = new Prestamo(libro);
+			blibliotecario.prestar(prestamo);
 			
 		} catch (PrestamoException e) {
 			// assert
@@ -112,8 +115,8 @@ public class BibliotecarioTest {
 		Bibliotecario blibliotecario = new Bibliotecario(repositorioLibros, repositorioPrestamo);
 
 		try {
-			
-			blibliotecario.prestar(libro.getIsbn());
+			Prestamo prestamo = new Prestamo(libro);
+			blibliotecario.prestar(prestamo);
 			
 		} catch (PrestamoException e) {
 			fail();
