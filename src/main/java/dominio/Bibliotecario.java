@@ -8,6 +8,7 @@ public class Bibliotecario {
 
 	public static final String EL_LIBRO_NO_SE_ENCUENTRA_DISPONIBLE = "El libro no se encuentra disponible";
 	public static final String EL_LIBRO_SE_UTILIZA_EN_BIBLIOTECA = "los libros palíndromos solo se pueden utilizar en la biblioteca";
+	public static final String EL_NOMBRE_USUARIO_ES_REQUERIDO = "El nombre del usuario es requerido";
 
 	private RepositorioLibro repositorioLibro;
 	private RepositorioPrestamo repositorioPrestamo;
@@ -22,8 +23,16 @@ public class Bibliotecario {
 		if(esPalindromo(prestamo.getLibro().getIsbn())) {
 			throw new PrestamoException(EL_LIBRO_SE_UTILIZA_EN_BIBLIOTECA);
 		}
-		//throw new UnsupportedOperationException("Método pendiente por implementar");
-
+		if(null != prestamo.getNombreUsuario() && !prestamo.getNombreUsuario().isEmpty()) {
+			if(esPrestado(prestamo.getLibro().getIsbn())){
+				throw new PrestamoException(EL_LIBRO_NO_SE_ENCUENTRA_DISPONIBLE);
+			}else {
+				this.repositorioPrestamo.agregar(prestamo);
+			}
+			
+		}else {
+			throw new PrestamoException(EL_NOMBRE_USUARIO_ES_REQUERIDO);
+		}
 	}
 
 	public boolean esPrestado(String isbn) {
