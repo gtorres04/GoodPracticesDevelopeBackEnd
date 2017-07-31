@@ -37,4 +37,32 @@ public class Prestamo {
 		return nombreUsuario;
 	}
 
+	/**
+	 * @param fechaSolicitud the fechaSolicitud to set
+	 */
+	public void setFechaSolicitud(Date fechaSolicitud) {
+		this.fechaSolicitud = fechaSolicitud;
+	}
+
+	/**
+	 * @param libro the libro to set
+	 */
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
+
+	/**
+	 * @param fechaEntregaMaxima the fechaEntregaMaxima to set
+	 */
+	public void setFechaEntregaMaxima(Date fechaEntregaMaxima) {
+		this.fechaEntregaMaxima = fechaEntregaMaxima;
+	}
+
+	/**
+	 * @param nombreUsuario the nombreUsuario to set
+	 */
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
 }

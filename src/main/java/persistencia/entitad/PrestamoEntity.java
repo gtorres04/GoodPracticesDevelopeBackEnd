@@ -28,6 +28,20 @@ public class PrestamoEntity {
 	
 	private String nombreUsuario;
 	
+	/**
+	 * @param fechaEntregaMaxima the fechaEntregaMaxima to set
+	 */
+	public void setFechaEntregaMaxima(Date fechaEntregaMaxima) {
+		this.fechaEntregaMaxima = fechaEntregaMaxima;
+	}
+
+	/**
+	 * @param nombreUsuario the nombreUsuario to set
+	 */
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
 	public Long getId() {
 		return id;
 	}
