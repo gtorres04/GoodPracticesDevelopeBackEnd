@@ -21,6 +21,9 @@ public class RepositorioLibroPersistente implements RepositorioLibro, Repositori
 		this.entityManager = entityManager;
 	}	
 
+	/* (non-Javadoc)
+	 * @see dominio.repositorio.RepositorioLibro#obtenerPorIsbn(java.lang.String)
+	 */
 	@Override
 	public Libro obtenerPorIsbn(String isbn) {
 		
@@ -29,12 +32,18 @@ public class RepositorioLibroPersistente implements RepositorioLibro, Repositori
 		return LibroBuilder.convertirADominio(libroEntity);
 	}
 
+	/* (non-Javadoc)
+	 * @see dominio.repositorio.RepositorioLibro#agregar(dominio.Libro)
+	 */
 	@Override
 	public void agregar(Libro libro) {
 		
 		entityManager.persist(LibroBuilder.convertirAEntity(libro));
 	}
 
+	/* (non-Javadoc)
+	 * @see persistencia.repositorio.jpa.RepositorioLibroJPA#obtenerLibroEntityPorIsbn(java.lang.String)
+	 */
 	@Override
 	public LibroEntity obtenerLibroEntityPorIsbn(String isbn) {
 		

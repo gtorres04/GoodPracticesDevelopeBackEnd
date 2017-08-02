@@ -145,4 +145,44 @@ public class BibliotecarioTest {
 			Assert.assertEquals(Bibliotecario.EL_NOMBRE_USUARIO_ES_REQUERIDO, e.getMessage());
 		}
 	}
+	
+	@Test
+	public void prestarLibroConIsbnDigitosNumericosMenorA30Test() {
+
+		// arrange
+		Libro libro = new LibroTestDataBuilder().conIsbn("Q12F5S5").build();
+
+		repositorioLibros.agregar(libro);
+
+		Bibliotecario blibliotecario = new Bibliotecario(repositorioLibros, repositorioPrestamo);
+
+		try {
+			Prestamo prestamo = new Prestamo(libro);
+			prestamo.setNombreUsuario(USUARIO);
+			blibliotecario.prestar(prestamo);
+			Assert.assertNull(prestamo.getFechaEntregaMaxima());
+		} catch (PrestamoException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void prestarLibroConIsbnDigitosNumericosMayorA30Test() {
+
+		// arrange
+		Libro libro = new LibroTestDataBuilder().conIsbn("Q12F59999S5").build();
+
+		repositorioLibros.agregar(libro);
+
+		Bibliotecario blibliotecario = new Bibliotecario(repositorioLibros, repositorioPrestamo);
+
+		try {
+			Prestamo prestamo = new Prestamo(libro);
+			prestamo.setNombreUsuario(USUARIO);
+			blibliotecario.prestar(prestamo);
+			Assert.assertNotNull(prestamo.getFechaEntregaMaxima());
+		} catch (PrestamoException e) {
+			fail();
+		}
+	}
 }

@@ -29,6 +29,11 @@ public class RepositorioPrestamoPersistente implements RepositorioPrestamo {
 		this.repositorioLibroJPA = (RepositorioLibroJPA) repositorioLibro;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dominio.repositorio.RepositorioPrestamo#agregar(dominio.Prestamo)
+	 */
 	@Override
 	public void agregar(Prestamo prestamo) {
 
@@ -37,6 +42,13 @@ public class RepositorioPrestamoPersistente implements RepositorioPrestamo {
 		entityManager.persist(prestamoEntity);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * dominio.repositorio.RepositorioPrestamo#obtenerLibroPrestadoPorIsbn(java.lang
+	 * .String)
+	 */
 	@Override
 	public Libro obtenerLibroPrestadoPorIsbn(String isbn) {
 
@@ -45,6 +57,12 @@ public class RepositorioPrestamoPersistente implements RepositorioPrestamo {
 		return LibroBuilder.convertirADominio(prestamoEntity != null ? prestamoEntity.getLibro() : null);
 	}
 
+	/**
+	 * Consulta un PrestamoEntity a partir del isbn del libro.
+	 * 
+	 * @param isbn
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	private PrestamoEntity obtenerPrestamoEntityPorIsbn(String isbn) {
 
@@ -56,6 +74,12 @@ public class RepositorioPrestamoPersistente implements RepositorioPrestamo {
 		return !resultList.isEmpty() ? (PrestamoEntity) resultList.get(0) : null;
 	}
 
+	/**
+	 * Se obtiene una instancia de PrestamoEntity a partir de un Prestamo.
+	 * 
+	 * @param prestamo
+	 * @return
+	 */
 	private PrestamoEntity buildPrestamoEntity(Prestamo prestamo) {
 
 		LibroEntity libroEntity = repositorioLibroJPA.obtenerLibroEntityPorIsbn(prestamo.getLibro().getIsbn());
@@ -67,6 +91,11 @@ public class RepositorioPrestamoPersistente implements RepositorioPrestamo {
 		return prestamoEntity;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dominio.repositorio.RepositorioPrestamo#obtener(java.lang.String)
+	 */
 	@Override
 	public Prestamo obtener(String isbn) {
 
